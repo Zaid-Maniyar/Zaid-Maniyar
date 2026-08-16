@@ -2429,3 +2429,46 @@ a { color: inherit; }
   25% { opacity: 1; clip-path: inset(0 0 0 80%); text-shadow: 0 0 15px #fff, 0 0 30px #b79cff; }
   30%, 100% { opacity: 0; clip-path: inset(0 0 0 100%); text-shadow: none; }
 }
+
+/* =========================================================
+   CRITICAL MOBILE & ANIMATION FIXES (PLACE AT THE VERY BOTTOM)
+   ========================================================= */
+
+/* 1. RESTORE NAME ANIMATION */
+.cursive-name {
+  animation: neonSignaturePulse 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes neonSignaturePulse {
+  0% {
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px rgba(192, 132, 252, 0.5);
+    transform: translateY(0) scale(1);
+    color: var(--neon-purple);
+  }
+  100% {
+    text-shadow: 0 0 15px #fff, 0 0 30px var(--neon-purple), 0 0 50px var(--neon-purple), 0 0 70px rgba(192, 132, 252, 0.8);
+    transform: translateY(-5px) scale(1.02);
+    color: #f3e8ff; 
+  }
+}
+
+/* 2. RESTORE TYPEWRITER EFFECT ON MOBILE */
+@media (max-width: 900px) {
+  .hero-sub-title {
+    /* Fluid scaling ensures the text is small enough to fit perfectly on one line */
+    font-size: min(2.6vw, 0.85rem) !important; 
+    letter-spacing: 0.05em !important;
+    padding: 0 !important;
+  }
+  
+  /* Forces the animation back on and restores the single-line layout */
+  .hero-sub-title .typewriter {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    width: 0;
+    max-width: none !important;
+    border-right: 2px solid var(--cyan) !important;
+    animation: typing 2.5s steps(54, end) 1s forwards, blink-cursor 0.8s step-end infinite !important;
+    text-align: left !important;
+  }
+}
