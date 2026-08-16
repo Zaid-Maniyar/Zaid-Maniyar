@@ -2041,9 +2041,12 @@ a { color: inherit; }
 }
 
 /* Only show the swipe hint on screens 900px or smaller */
+/* Only show the swipe hint on screens 900px or smaller */
 @media (max-width: 900px) {
   .swipe-hint {
     display: block;
+    margin-top: -3rem;   /* Pulls the text up snugly under the heading */
+    margin-bottom: 3rem; /* Preserves a nice gap before the timeline starts */
   }
 }
 
