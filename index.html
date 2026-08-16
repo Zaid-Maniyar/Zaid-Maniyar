@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaid Maniyar | Mission Log</title>
+<meta name="description" content="Zaid Maniyar — Software Engineer. Full-stack development, APIs and applied ML.">
+<link rel="stylesheet" href="portfolio3.css">
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- Fixed Trajectory Line -->
+<div class="trajectory-rail" aria-hidden="true">
+  <div class="waypoint-marker" data-tint="var(--tint-edu)" style="top:8%"></div>
+  <div class="waypoint-marker" data-tint="var(--tint-edu)" style="top:21%"></div>
+  <div class="waypoint-marker" data-tint="var(--tint-sys)" style="top:34%"></div>
+  <div class="waypoint-marker" data-tint="var(--tint-sys)" style="top:47%"></div>
+  <div class="waypoint-marker" data-tint="var(--tint-exp)" style="top:60%"></div>
+  <div class="waypoint-marker" data-tint="var(--tint-proj)" style="top:73%"></div>
+  <div class="waypoint-marker" data-tint="#b79cff" style="top:86%"></div>
+  <div class="waypoint-marker" data-tint="var(--accent)" style="top:98%"></div>
+</div>
+
+<!-- =========================================================
+     MISSION LOG HEADER / NAVBAR (CLEAN & CENTERED)
+     ========================================================= -->
+<nav class="navbar fade-in">
+  
+  <!-- LEFT: SVG Logo and ZM. -->
+  <a href="#" class="logo">
+    <svg class="tech-logo-svg" viewBox="0 0 100 100" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+      <circle class="tech-ring-outer" cx="50" cy="50" r="44" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="12 6 4 6"/>
+      <rect class="tech-box-inner" x="25" y="25" width="50" height="50" fill="none" stroke="var(--neon-purple)" stroke-width="2" transform="rotate(45 50 50)"/>
+      <path d="M50,4 v19 M50,96 v-19 M4,50 h19 M96,50 h-19" stroke="var(--cyan)" stroke-width="2.5" stroke-linecap="square"/>
+      <circle class="tech-core" cx="50" cy="50" r="8" fill="var(--accent)"/>
+      <circle class="tech-core-ring" cx="50" cy="50" r="16" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="2 4"/>
+    </svg>
+    ZM<span class="dot">.</span>
+  </a>
+  
+  <!-- MIDDLE: Essential Links Only -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-btn">About</a></li>
+    <li><a href="#skills" class="nav-btn">Skills</a></li>
+    <li><a href="#experience" class="nav-btn">Experience</a></li>
+    <li><a href="#projects" class="nav-btn">Projects</a></li>
+  </ul>
+  
+  <!-- RIGHT: Contact Button & Mobile Menu Toggle -->
+  <div class="nav-right">
+    <a href="#contact" class="nav-contact-btn">TRANSMIT</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </div>
+  
+</nav>
+
+<!-- =========================================================
+     HERO SECTION
+     ========================================================= -->
+<header class="space-hero">
+  <!-- Deep Space Background -->
+  <div class="space-hero-bg" style="background-image: url('assets/images/bg2.png');"></div>
+
+  <!-- Left Vertical Social Bar -->
+  <aside class="vertical-socials">
+    <a href="#" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    </a>
+    
+    <!-- Email Logo with Mailto link -->
+    <a href="mailto:zam0918035@gmail.com?subject=Transmission%20from%20Mission%20Log%20Visitor" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </a>
+    
+    <a href="#" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    
+  </aside>
+
+  <!-- Center Content -->
+  <div class="hero-center-wrapper">
+    <div class="glitch-banner">
+      <div class="glitch-row top-row">
+        <div class="h-line"></div>
+        <span class="small-caps">SYSTEM INITIATED</span>
+      </div>
+      
+      <!-- Typography Layout -->
+      <h1 class="hero-main-title">
+        MYSELF <br>
+        <span class="cursive-name">Zaid Maniyar</span>
+      </h1>
+      
+      <!-- Subtitle Layout -->
+      <h2 class="hero-sub-title">
+        <span class="typewriter">ASPIRING SOFTWARE DEVELOPER <span class="separator">|</span> AI & DATA ENTHUSIAST</span>
+      </h2>
+      
+      <div class="glitch-row bottom-row">
+        <span class="small-caps">STATUS: ONLINE</span>
+        <div class="h-line"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Massive Planet -->
+  <div class="planet-container">
+    <img src="assets/images/earth.png" alt="Earth" class="massive-earth">
+    <a href="#about" class="bracket-btn glow-pulse">
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <span class="bracket-text">CLICK<br>TO OPEN</span>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+    </a>
+  </div>
+
+  <!-- Bottom UI Indicators -->
+  <div class="bottom-ui bottom-left">
+    <span>PRESS</span>
+    <div class="icon-box">↵</div>
+  </div>
+  <div class="bottom-ui bottom-right">
+    <span>SCROLL</span>
+    <div class="icon-box">↕</div>
+  </div>
+</header>
+
+<!-- =========================================================
+     ABOUT ME (Content Left, Visual Right)
+     ========================================================= -->
+<section id="about" class="sector sector-about reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg1.jpg');"></div>
+  
+  <div class="sector-inner split-layout">
+    <div class="content-side">
+      <p class="eyebrow sector-eyebrow">Waypoint 01 &middot; Bio</p>
+      <h3 class="sector-title title-cyber-glitch" data-text="About Me">About Me <span class="sector-code">// LOG-01</span></h3>
+
+      <div class="glass-card card">
+        <p>Enthusiastic and motivated Tech graduate with a strong foundation in Information Technology principles and 
+          a passion for learning. Eager to apply technical knowledge to solve real world problems and contribute to innovative 
+          IT solutions. Adaptable, detail oriented, and committed to continuous learning in a dynamic environment.
+           Aiming to learn and gain professional knowledge and understand the functioning of professional organisation.</p>
+      </div>
+    </div>
+    
+    <!-- Sci-Fi Profile HUD Wrapper -->
+    <div class="visual-side">
+      <div class="profile-hud-wrapper">
+        <!-- Crop box allows zooming/shifting without overlapping the brackets -->
+        <div class="image-crop-box">
+          <img src="assets/images/zm2.png" alt="Zaid Maniyar" class="about-profile-img">
+        </div>
+        <!-- Targeting Brackets -->
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
+        <!-- Animated Biometric Scanner Line -->
+        <div class="scanner-line"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     EDUCATION MAP (Horizontal Wavy Checkpoints)
+     ========================================================= -->
+<section id="education" class="sector sector-education reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg2.jpg');"></div>
+  
+  <div class="sector-inner" style="max-width: 100%;">
+    <p class="eyebrow sector-eyebrow text-center">Waypoint 02 &middot; Academia</p>
+    <h3 class="sector-title title-ufo-hover center-title">Education <span class="sector-code">// LOG-02</span></h3>
+    
+    <!-- NEW: Swipe hint for mobile users -->
+    <p class="swipe-hint">← Slide left to view full academics →</p>
+    
+    <!-- Scrollable Map Wrapper -->
+    <div class="map-scroll-wrapper">
+      <div class="mission-map">
+        <!-- Animated Glowing Wavy Track -->
+        <svg class="wavy-track" viewBox="0 0 1200 200" preserveAspectRatio="none">
+          <path class="glow-track" d="M 0 100 C 100 100, 150 200, 250 200 C 350 200, 450 0, 600 0 C 750 0, 850 200, 950 200 C 1050 200, 1100 100, 1200 100" fill="none" stroke="var(--neon-purple)" stroke-width="3" />
+          <path class="data-track" d="M 0 100 C 100 100, 150 200, 250 200 C 350 200, 450 0, 600 0 C 750 0, 850 200, 950 200 C 1050 200, 1100 100, 1200 100" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="10 15" />
+        </svg>
+
+        <!-- Node 1: SSC -->
+        <div class="map-node node-1">
+          <div class="checkpoint-pulse"></div>
+          <div class="glass-card map-card">
+            <div class="timeline-date">2020 | Pune, India</div>
+            <h4 class="timeline-title">Pandharinath Mohite English Medium School</h4>
+            <p class="timeline-role">Secondary School Certificate (SSC)</p>
+            <div class="timeline-metric">Percentage: <span class="metric-highlight">84.60%</span></div>
+          </div>
+        </div>
+
+        <!-- Node 2: HSC -->
+        <div class="map-node node-2">
+          <div class="checkpoint-pulse"></div>
+          <div class="glass-card map-card">
+            <div class="timeline-date">2020 - 2022 | Pune, India</div>
+            <h4 class="timeline-title">AKI Poona College of Arts, Science &amp; Commerce</h4>
+            <p class="timeline-role">Higher Secondary Certificate (HSC) - Science</p>
+            <div class="timeline-metric">Percentage: <span class="metric-highlight">62.33%</span></div>
+          </div>
+        </div>
+
+        <!-- Node 3: Degree -->
+        <div class="map-node node-3">
+          <div class="checkpoint-pulse"></div>
+          <div class="glass-card map-card">
+            <div class="timeline-date">2020 - 2026 | Pune, India</div>
+            <h4 class="timeline-title">Anantrao Pawar College of Engineering &amp; Research</h4>
+            <p class="timeline-role">Bachelor of Engineering in Information Technology</p>
+            <div class="timeline-metric">Aggregate Score: <span class="metric-highlight">8.31</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICES MATRIX (Full Width Grid)
+     ========================================================= -->
+<section id="services" class="sector sector-services reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg3.png');"></div>
+  
+  <div class="sector-inner">
+    <p class="eyebrow sector-eyebrow text-center">Waypoint 03 &middot; Capabilities</p>
+    
+    <!-- Heading Class -->
+    <h3 class="sector-title title-quantum-shiver center-title">Services <span class="sector-code">// LOG-03</span></h3>
+
+    <div class="grid">
+      <div class="glass-card card">
+        <div class="skill-icon">🌐</div>
+        <h4>Full-Stack Engineering</h4>
+        <p>Architecting and maintaining scalable, user-friendly responsive web applications leveraging fast backend logic (FastAPI) and modern frontend interfaces (React, HTML, CSS).</p>
+      </div>
+
+      <div class="glass-card card">
+        <div class="skill-icon">🗄️</div>
+        <h4>Database Architecture</h4>
+        <p>Designing highly normalized relational databases (3NF) to manage complex operations, ensuring a single source of truth alongside rigorous SQL query optimization.</p>
+      </div>
+
+      <div class="glass-card card">
+        <div class="skill-icon">🧠</div>
+        <h4>Applied AI & NLP</h4>
+        <p>Implementing deep learning solutions, including OCR integration and fine-tuning large language models (FLAN-T5) to automate and summarize complex textual data.</p>
+      </div>
+
+      <!-- Card 4: Developer Tools -->
+      <div class="glass-card card">
+        <div class="skill-icon">🛠️</div>
+        <h4>Development &amp; Analytics Tools</h4>
+        <p>Proficient in utilizing industry-standard environments and platforms, including Microsoft Power BI, Visual Studio Code, MS SQL Server, and SQL*Plus, to streamline development and data intelligence workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CATEGORIZED SKILLS (Flowchart & Cloud System)
+     ========================================================= -->
+<section id="skills" class="sector sector-skills reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg3.png');"></div>
+  
+  <div class="sector-inner" style="max-width: 1200px;">
+    <p class="eyebrow sector-eyebrow text-center">Waypoint 04 &middot; Onboard systems</p>
+    <h3 class="sector-title title-data-stream center-title">Technical Expertise <span class="sector-code">// LOG-04</span></h3>
+
+    <div class="flowchart-container">
+
+      <!-- Level 1: Central Core -->
+      <div class="flow-core-wrapper">
+        <div class="glass-card flow-core pulse-slow">
+          <div class="core-icon">🖥️</div>
+          <div class="core-label">SYSTEM CORE</div>
+        </div>
+        <!-- Vertical trunk line dropping from the core -->
+        <div class="flow-line-vertical">
+          <div class="linear-stream-vertical"></div>
+        </div>
+      </div>
+
+      <!-- Level 2 & 3: Horizontal Bus and Category Branches -->
+      <div class="flow-branches-row">
+        
+        <!-- Frontend Branch -->
+        <div class="flow-branch">
+          <!-- The connector line -->
+          <div class="branch-connector"><div class="linear-stream-horizontal"></div></div>
+          <div class="branch-drop"><div class="linear-stream-vertical delay-1"></div></div>
+          
+          <div class="glass-card category-node">
+            <h4>Frontend</h4>
+          </div>
+          
+          <!-- Skill Cloud -->
+          <div class="cloud-diagram">
+            <div class="nebula-blob blob-cyan"></div>
+            <span class="cloud-tag float-1">HTML</span>
+            <span class="cloud-tag float-2">CSS</span>
+            
+          </div>
+        </div>
+
+        <!-- Backend Branch -->
+        <div class="flow-branch">
+          <div class="branch-connector"><div class="linear-stream-horizontal delay-2"></div></div>
+          <div class="branch-drop"><div class="linear-stream-vertical delay-2"></div></div>
+          
+          <div class="glass-card category-node">
+            <h4>Backend</h4>
+          </div>
+          
+          <!-- Skill Cloud -->
+          <div class="cloud-diagram">
+            <div class="nebula-blob blob-purple"></div>
+            <span class="cloud-tag float-2">Python</span>
+            <span class="cloud-tag float-4">FastAPI</span>
+          </div>
+        </div>
+
+        <!-- Database Branch -->
+        <div class="flow-branch">
+          <div class="branch-connector"><div class="linear-stream-horizontal delay-1"></div></div>
+          <div class="branch-drop"><div class="linear-stream-vertical delay-3"></div></div>
+          
+          <div class="glass-card category-node">
+            <h4>Database</h4>
+          </div>
+          
+          <!-- Skill Cloud -->
+          <div class="cloud-diagram">
+            <div class="nebula-blob blob-cyan"></div>
+            <span class="cloud-tag float-3">MySQL</span>
+            <span class="cloud-tag float-1">Relational DBs</span>
+            <span class="cloud-tag float-4">SQL Tuning</span>
+            <span class="cloud-tag float-2">3NF Normalization</span>
+          </div>
+        </div>
+
+        <!-- AI & Tools Branch -->
+        <div class="flow-branch">
+          <div class="branch-connector"><div class="linear-stream-horizontal delay-3"></div></div>
+          <div class="branch-drop"><div class="linear-stream-vertical delay-4"></div></div>
+          
+          <div class="glass-card category-node">
+            <h4>AI & Tools</h4>
+          </div>
+          
+          <!-- Skill Cloud -->
+          <div class="cloud-diagram">
+            <div class="nebula-blob blob-purple"></div>
+            <span class="cloud-tag float-4">FLAN-T5</span>
+            <span class="cloud-tag float-1">OCR</span>
+            <span class="cloud-tag float-3">VS Code</span>
+            <span class="cloud-tag float-2">Power BI</span>
+            <span class="cloud-tag float-1">Git</span>
+            <span class="cloud-tag float-3">Postman</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EXPERIENCE (Vertical Data Stream Timeline)
+     ========================================================= -->
+<section id="experience" class="sector sector-experience reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg2.png');"></div>
+  
+  <div class="sector-inner">
+    <h3 class="sector-title title-neon-flicker"><span class="prompt">></span> Experience <span class="sector-code">// LOG-05</span></h3>
+    
+    <div class="data-link-timeline">
+      <!-- The glowing animated center line -->
+      <div class="data-stream-line">
+        <div class="stream-pulse"></div>
+      </div>
+
+      <!-- Node 1: SunAmps Energy -->
+      <div class="experience-node right-node">
+        <div class="diamond-blip"></div>
+        <div class="glass-card exp-card">
+          <div class="exp-header">
+            <h4 class="timeline-title">SunAmps Energy Pvt Ltd</h4>
+            <span class="timeline-date">2025</span>
+          </div>
+          <p class="timeline-role">Intern- Full Stack Web Developer (virtual)</p>
+          <ul class="exp-list">
+            <li>Collaborated with team members to understand document technical specifications and user requirements to ensure project clarity.</li>
+            <li>Developed and maintained responsive web applications leveraging HTML and CSS to deliver user-friendly interfaces.</li>
+            <li>Applied best practices in front-end development to accessible and visually consistent web pages.</li>
+            <li>Gained hands-on experience in full lifecycle development, from requirement analysis to implementation.</li>
+          </ul>
+          
+          <!-- Certificate Button -->
+          <div class="exp-action" style="margin-top: 1.5rem; border-top: 1px dashed rgba(94, 231, 255, 0.2); padding-top: 1.2rem;">
+            <a href="assets/pdfs/internship.pdf" target="_blank" class="github-btn exp-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              VIEW CERTIFICATE
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Node 2: Eduskill & AICTE -->
+      <div class="experience-node left-node">
+        <div class="diamond-blip"></div>
+        <div class="glass-card exp-card">
+          <div class="exp-header">
+            <h4 class="timeline-title">Eduskill &amp; AICTE</h4>
+            <span class="timeline-date">2024</span>
+          </div>
+          <p class="timeline-role">Intern-Generative AI (virtual)</p>
+          <ul class="exp-list">
+            <li>Successfully completed a virtual internship program focusing on Generative AI, a cutting-edge domain of artificial intelligence.</li>
+            <li>Developed proficiency in Python, TensorFlow, and other machine learning libraries to implement AI models.</li>
+            <li>Built generative models such as Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs) to synthesize realistic data outputs.</li>
+            <li>Designed and tested predictive models leveraging generative AI algorithms for solving real-world problems.</li>
+          </ul>
+          
+          <!-- Certificate Button -->
+          <div class="exp-action" style="margin-top: 1.5rem; border-top: 1px dashed rgba(94, 231, 255, 0.2); padding-top: 1.2rem;">
+            <a href="assets/pdfs/ZAID ASIF MANIYAR 183447.pdf" target="_blank" class="github-btn exp-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              VIEW CERTIFICATE
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROJECTS (Sci-Fi Grid Layout)
+     ========================================================= -->
+<section id="projects" class="sector sector-projects reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg3.png');"></div>
+  
+  <div class="sector-inner" style="max-width: 1200px;">
+    <p class="eyebrow sector-eyebrow text-center">Waypoint 06 &middot; Discoveries</p>
+    <h3 class="sector-title title-laser-scan center-title">Projects &amp; Publications <span class="sector-code">// LOG-06</span></h3>
+    
+    <!-- New 3-Column Grid -->
+    <div class="projects-grid">
+      
+      <!-- Card 1: MediBrief -->
+      <div class="glass-card project-card sci-fi-card">
+        <div class="card-scanline"></div>
+        <div class="project-content">
+          <div class="tech-nodes"><span></span><span></span><span></span></div>
+          <h4 class="project-title">MediBrief-Lightweight Medical Report Summarization</h4>
+          <div class="card-tags">
+            <span class="tag glow-tag">FLAN-T5 Large</span>
+          </div>
+          <p>A deep learning project focused on improving patient health outcomes by making complex medical information accessible. Designed and implemented a system that uses OCR and a fine-tuned Flan T5 Large LLM to analyze and generate clear, easy to understand summaries of various medical reports.</p>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/Zaid-Maniyar/MediBrief.git" target="_blank" class="github-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            ACCESS SOURCE
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: E-state Management -->
+      <div class="glass-card project-card sci-fi-card">
+        <div class="card-scanline"></div>
+        <div class="project-content">
+          <div class="tech-nodes"><span></span><span></span><span></span></div>
+          <h4 class="project-title">E-state Management System</h4>
+          <div class="card-tags">
+            <span class="tag glow-tag">MySQL</span>
+          </div>
+          <p>Designed and implemented a normalized relational database (using MySQL) to manage complex real estate operations, including property listings transactions, leases, and relationships. Developed a comprehensive schema across 14 tables to manage a single source of truth for all property data while adhering to Third Normal Form (3NF) principles.</p>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/zaidmaniyar/estate_management_system-MySQL.git" target="_blank" class="github-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            VIEW ON GITHUB
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Data Modeling Project -->
+      <div class="glass-card project-card sci-fi-card">
+        <div class="card-scanline"></div>
+        <div class="project-content">
+          <div class="tech-nodes"><span></span><span></span><span></span></div>
+          <h4 class="project-title">Data Modeling Project</h4>
+          <div class="card-tags">
+            <span class="tag glow-tag">Data Analytics</span>
+            <span class="tag glow-tag">Database Design</span>
+          </div>
+          <p>An interactive data modeling project demonstrating advanced structural techniques. The repository contains compiled <code>Data_modelling_project.pbix</code> dashboard files showcasing data transformations, relational mapping architectures, and comprehensive visual before-and-after analytics.</p>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/zaidmaniyar/Data-Modeling-project.git" target="_blank" class="github-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            VIEW ON GITHUB
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Power BI Project -->
+      <div class="glass-card project-card sci-fi-card">
+        <div class="card-scanline"></div>
+        <div class="project-content">
+          <div class="tech-nodes"><span></span><span></span><span></span></div>
+          <h4 class="project-title">Power BI Analytics</h4>
+          <div class="card-tags">
+            <span class="tag glow-tag">Microsoft Power BI</span>
+            <span class="tag glow-tag">BI Intelligence</span>
+          </div>
+          <p>An interactive dashboard built with Microsoft Power BI to transform raw data into actionable business intelligence. The repository includes the <code>POWER_BI_PROJECT.pbix</code> file showcasing dynamic data visualizations and reporting capabilities.</p>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/Zaid-Maniyar/Power_BI-Project.git" target="_blank" class="github-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            VIEW ON GITHUB
+          </a>
+        </div>
+      </div>
+      
+      <!-- Card 5: Publication -->
+        <div class="glass-card project-card sci-fi-card achievement-card">
+          <div class="card-scanline"></div>
+          <div class="project-content">
+            <div class="tech-nodes"><span></span><span></span><span></span></div>
+            <h4 class="project-title">Publication</h4>
+            <div class="card-tags">
+              <span class="tag glow-tag" style="border-color: var(--cyan); color: var(--cyan);">ImCReTE-2026</span>
+            </div>
+            <p>Published a paper titled "MEDIBRIEF: A Scalable, Privacy-Preserving and Lightweight Medical Report Summarization". Presented at the 3rd International Multidisciplinary Conference on Research, Technology & Engineering (ImCReTE-2026).</p>
+          </div>
+          <!-- Dual Action Buttons Stacked -->
+          <div class="project-action" style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <a href="assets/images/publication.jpeg" target="_blank" class="github-btn" style="color: var(--cyan); border-color: rgba(94, 231, 255, 0.3);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              VIEW CERTIFICATE
+            </a>
+            <a href="assets/pdfs/MEDIBRIEF RESEARCH paper 2 column format.pdf" target="_blank" class="github-btn" style="color: var(--cyan); border-color: rgba(94, 231, 255, 0.3);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              VIEW PAPER
+            </a>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CERTIFICATES (Holographic Datapads)
+     ========================================================= -->
+<section id="certificates" class="sector sector-certificates reveal">
+  <div class="sector-bg" style="background-image: url('assets/images/bg1.jpg');"></div>
+  <div class="sector-inner" style="max-width: 1200px;">
+    <p class="eyebrow sector-eyebrow text-center">Waypoint 07 &middot; Credentials</p>
+    <h3 class="sector-title title-hologram-sweep center-title">Certificates <span class="sector-code">// LOG-07</span></h3>
+    
+    <div class="projects-grid">
+      
+      <!-- Cert 1: Tech Fusion -->
+      <div class="glass-card cert-card">
+        <div class="hologram-glare"></div>
+        <div class="cert-icon">🏆</div>
+        <h4>Tech Fusion 2K26</h4>
+        <p class="cert-org">APCOER, Pune &middot; Dept of IT</p>
+        <p class="cert-date">April 28, 2026</p>
+        <a href="assets/images/techfusion.jpeg" target="_blank" class="cert-btn">VERIFY CREDENTIAL</a>
+      </div>
+
+      <!-- Cert 2: Cyber Security -->
+      <div class="glass-card cert-card">
+        <div class="hologram-glare"></div>
+        <div class="cert-icon">🛡️</div>
+        <h4>Cyber Security &amp; Ethical Hacking</h4>
+        <p class="cert-org">Rinex &amp; E-Cell IIT Bhubaneswar</p>
+        <p class="cert-date">Jan 30 - Mar 17, 2023</p>
+        <a href="assets/pdfs/Course Completion Certificate.pdf" target="_blank" class="cert-btn">VERIFY CREDENTIAL</a>
+      </div>
+
+      <!-- Cert 3: HackerRank Python -->
+      <div class="glass-card cert-card">
+        <div class="hologram-glare"></div>
+        <div class="cert-icon">💻</div>
+        <h4>Python</h4>
+        <p class="cert-org">HackerRank</p>
+        <p class="cert-date">July 2, 2025</p>
+        <a href="assets/pdfs/pythonhackerrankcompressed.pdf" target="_blank" class="cert-btn">VERIFY CREDENTIAL</a>
+      </div>
+
+      <!-- Cert 4: Sparktech -->
+      <div class="glass-card cert-card">
+        <div class="hologram-glare"></div>
+        <div class="cert-icon">⚡</div>
+        <h4>Sparktech 2k26 - Present Xtech</h4>
+        <p class="cert-org">ISTE Students Chapter, APCOER</p>
+        <p class="cert-date">March 5-6, 2026</p>
+        <a href="assets/pdfs/Zaid Certificate.pdf" target="_blank" class="cert-btn">VERIFY CREDENTIAL</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT SECTION (Secure Communications Terminal)
+     ========================================================= -->
+<section id="contact" class="sector sector-contact reveal">
+  <div class="sector-bg"></div>
+  <div class="sector-inner">
+    
+    <div class="contact-panel hud-terminal">
+      <!-- Cyberpunk HUD Corners -->
+      <div class="terminal-corner top-left"></div>
+      <div class="terminal-corner top-right"></div>
+      <div class="terminal-corner bottom-left"></div>
+      <div class="terminal-corner bottom-right"></div>
+      
+      <!-- Pinging Radar Icon -->
+      <div class="comms-icon">
+        <div class="signal-rings">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+        </div>
+        📡
+      </div>
+
+      <p class="eyebrow" style="justify-content: center;">Waypoint 08 &middot; Transmit</p>
+      <h3 class="contact-title title-radar-pulse">Let's build something in orbit.</h3>
+      
+      <!-- Retro Sci-Fi Terminal Window -->
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">secure_comm_link.sh</span>
+        </div>
+        <div class="terminal-body">
+          <p>> System check... <span style="color: #27c93f;">OK</span></p>
+          <p>> Open to full-stack and software engineering roles.</p>
+          <p>> Send a transmission and I'll respond from Earth.</p>
+          
+          <!-- New Typewriter Email Line -->
+          <p class="terminal-email-line">
+            <span>> Direct Ping: </span>
+            <a href="mailto:zam0918035@gmail.com" class="terminal-typewriter-email">zam0918035@gmail.com</a><span class="terminal-cursor"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-buttons">
+        <a href="mailto:zam0918035@gmail.com?subject=Transmission%20from%20Mission%20Log%20Visitor" class="btn btn-primary launch-btn">INITIATE TRANSMISSION</a>
+        <a href="assets/pdfs/ZAID_CV_FINAL.pdf" class="btn btn-outline" download>DOWNLOAD SCHEMATICS (CV)</a>
+      </div>
+      
+      <!-- Blinking Status Indicator -->
+      <div class="transmission-status">
+        <span class="status-dot"></span> SECURE LINK ACTIVE
+      </div>
+      <p class="footer-note">© 2026 ZAID MANIYAR &middot; TRANSMISSION ENDS</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Make sure to link your JS file -->
+<script src="portfolio2.js"></script>
+</body>
+</html>
