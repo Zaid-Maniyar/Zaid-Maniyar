@@ -2472,3 +2472,54 @@ a { color: inherit; }
     text-align: left !important;
   }
 }
+
+/* =========================================================
+   MOBILE SOCIAL ICONS IN HEADER
+   ========================================================= */
+.nav-mobile-socials {
+  display: none; /* Hidden by default on large screens */
+}
+
+@media (max-width: 1000px) {
+  /* Hide the cropping vertical sidebar completely */
+  .vertical-socials {
+    display: none !important;
+  }
+
+  /* Show and center the icons inside the navbar */
+  .nav-mobile-socials {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between icons */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .nav-mobile-socials a {
+    color: var(--text);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .nav-mobile-socials a:hover {
+    color: var(--cyan);
+    filter: drop-shadow(0 0 8px var(--cyan));
+  }
+}
+
+/* Fix for extremely small phones (e.g., older iPhones) to prevent overlapping */
+@media (max-width: 380px) {
+  .nav-mobile-socials {
+    gap: 10px;
+  }
+  .nav-mobile-socials a {
+    width: 18px;
+    height: 18px;
+  }
+}
