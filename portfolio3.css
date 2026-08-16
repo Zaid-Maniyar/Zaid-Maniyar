@@ -2043,15 +2043,14 @@ a { color: inherit; }
 /* Only show the swipe hint on screens 900px or smaller */
 @media (max-width: 900px) {
   .swipe-hint {
-    display: flex;              /* Uses flexbox to guarantee perfect alignment */
-    justify-content: center;    /* Centers horizontally */
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: -3rem;          /* Pulls it up right under the heading */
-    margin-bottom: 3rem;        /* Space before the timeline */
-    margin-left: auto;          /* Failsafe to keep the box centered */
-    margin-right: auto;         /* Failsafe to keep the box centered */
+    display: block !important;       /* Removes the flexbox bug */
+    width: 100% !important;
+    text-align: center !important;   /* Forces perfect horizontal centering */
+    margin-top: -2.5rem !important;  /* Pulls it up right under the heading */
+    margin-bottom: 2rem !important;  /* Space before the timeline */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 1rem !important;      /* Keeps the text safely away from screen edges */
   }
 }
 
