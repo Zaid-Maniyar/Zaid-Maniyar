@@ -82,7 +82,7 @@ a { color: inherit; }
   align-items: center;
   justify-content: flex-start; /* Stacks elements from the top down */
   overflow: hidden;
-  padding-top: 20vh; /* Pushes the title down slightly */
+  padding-top: 7.5rem; /* Pushes the title down slightly */
   padding-bottom: 15vh; /* Adds breathing room below the earth */
 }
 
