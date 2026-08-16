@@ -2613,3 +2613,12 @@ a { color: inherit; }
     height: 18px;
   }
 }
+
+/* =========================================================
+   LIFT DESKTOP SOCIAL ICONS HIGHER
+   ========================================================= */
+@media (min-width: 1001px) {
+  .vertical-socials {
+    top: 35% !important; /* Changes the vertical position from 50% to 35% */
+  }
+}
