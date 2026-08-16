@@ -2030,14 +2030,25 @@ a { color: inherit; }
   color: var(--cyan);
   /* Reduced letter spacing so the text fits in one line */
   letter-spacing: 0.05em; 
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   /* Added padding so it doesn't touch the edges of the screen */
   padding: 0 1rem;
   text-shadow: 0 0 8px rgba(94, 231, 255, 0.4);
-  animation: pulse 2s infinite alternate;
+  /* Note: does NOT reuse the shared `pulse` keyframes — those include
+     transform: translate(-50%, -50%), a centering trick meant for
+     absolutely-positioned elements. Applied here (normal document flow)
+     it shifted this text off-screen to the left. Use an opacity-only
+     pulse instead so the box stays put and text-align can center it. */
+  animation: swipeHintPulse 2s infinite alternate;
   /* Allows the text to break into two centered lines if the screen is extremely narrow */
   white-space: normal; 
   width: 100%;
+  box-sizing: border-box;
+}
+
+@keyframes swipeHintPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 /* Only show the swipe hint on screens 900px or smaller */
