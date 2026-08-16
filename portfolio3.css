@@ -2622,3 +2622,13 @@ a { color: inherit; }
     top: 35% !important; /* Changes the vertical position from 50% to 35% */
   }
 }
+
+/* =========================================================
+   DESKTOP HERO TEXT VISIBILITY FIX
+   ========================================================= */
+@media (min-width: 901px) {
+  .hero-center-wrapper {
+    /* Slides the entire text block down perfectly below the navbar */
+    margin-top: 8rem !important; 
+  }
+}
