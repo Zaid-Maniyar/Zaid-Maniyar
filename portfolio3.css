@@ -2372,3 +2372,39 @@ a { color: inherit; }
   25% { opacity: 1; clip-path: inset(0 0 0 80%); text-shadow: 0 0 15px #fff, 0 0 30px #b79cff; }
   30%, 100% { opacity: 0; clip-path: inset(0 0 0 100%); text-shadow: none; }
 }
+
+/* =========================================================
+   CRITICAL HERO OVERRIDES (PLACE AT THE VERY BOTTOM)
+   ========================================================= */
+
+/* 1. Pulls "MYSELF" down from behind the header */
+.hero-center-wrapper {
+  margin-top: 0 !important;
+}
+
+/* 2. Mobile screen scaling to prevent horizontal overflow */
+@media (max-width: 768px) {
+  .space-hero {
+    padding-top: 16vh !important; 
+  }
+
+  .hero-main-title {
+    font-size: 1.5rem !important;
+  }
+
+  /* Scales your cursive name perfectly to the screen */
+  .cursive-name {
+    font-size: 15vw !important; 
+    line-height: 1.2 !important;
+  }
+
+  /* Fluid sizing keeps the typewriter text EXACTLY within the screen width */
+  .hero-sub-title {
+    font-size: 2.8vw !important; 
+    letter-spacing: 0 !important; 
+  }
+
+  .small-caps {
+    font-size: 0.6rem !important;
+  }
+}
