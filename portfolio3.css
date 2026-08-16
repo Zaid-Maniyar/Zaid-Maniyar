@@ -2041,12 +2041,17 @@ a { color: inherit; }
 }
 
 /* Only show the swipe hint on screens 900px or smaller */
-/* Only show the swipe hint on screens 900px or smaller */
 @media (max-width: 900px) {
   .swipe-hint {
-    display: block;
-    margin-top: -3rem;   /* Pulls the text up snugly under the heading */
-    margin-bottom: 3rem; /* Preserves a nice gap before the timeline starts */
+    display: flex;              /* Uses flexbox to guarantee perfect alignment */
+    justify-content: center;    /* Centers horizontally */
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: -3rem;          /* Pulls it up right under the heading */
+    margin-bottom: 3rem;        /* Space before the timeline */
+    margin-left: auto;          /* Failsafe to keep the box centered */
+    margin-right: auto;         /* Failsafe to keep the box centered */
   }
 }
 
