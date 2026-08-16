@@ -144,48 +144,8 @@ a { color: inherit; }
   position: relative;
   z-index: 10;
   text-align: center;
-  margin-top: 0; /* Reset to 0 so it sits naturally above the earth */
-}
-
-.glitch-banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  margin-bottom: 1rem;
-}
-
-.glitch-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-}
-
-.top-row { justify-content: flex-start; padding-left: 20%; }
-.bottom-row { justify-content: flex-end; padding-right: 20%; }
-
-.h-line {
-  flex: 1;
-  height: 2px;
-  background: var(--neon-purple);
-  box-shadow: 0 0 8px var(--neon-purple);
-}
-
-.small-caps {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  font-weight: bold;
-  color: var(--text);
-}
-
-/* Center Neon Typography */
-.hero-center-wrapper {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  margin-top: -15vh; 
+  margin-top: 0; 
+  padding-top: 3rem; /* Creates safe breathing room below the navbar */
 }
 
 .glitch-banner {
@@ -235,32 +195,16 @@ a { color: inherit; }
 /* The Cursive Name */
 .cursive-name {
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(3.5rem, 8vw, 7rem);
   color: var(--neon-purple);
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: capitalize; 
   display: block;
   padding-top: 0.5rem;
-  /* NEW: Adding the animation */
+  text-shadow: 0 0 15px var(--neon-purple), 0 0 35px rgba(192, 132, 252, 0.7);
   animation: neonSignaturePulse 3s ease-in-out infinite alternate;
 }
-
-/* NEW: The animation keyframes */
-@keyframes neonSignaturePulse {
-  0% {
-    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px rgba(192, 132, 252, 0.5);
-    transform: translateY(0) scale(1);
-    color: var(--neon-purple);
-  }
-  100% {
-    /* Brightens the core text slightly, intensifies the glow, and floats up */
-    text-shadow: 0 0 15px #fff, 0 0 30px var(--neon-purple), 0 0 50px var(--neon-purple), 0 0 70px rgba(192, 132, 252, 0.8);
-    transform: translateY(-5px) scale(1.02);
-    color: #f3e8ff; 
-  }
-}
-
 
 /* The Subtitle Container */
 .hero-sub-title {
@@ -268,28 +212,21 @@ a { color: inherit; }
   font-size: clamp(0.7rem, 1.5vw, 1rem); 
   color: var(--cyan);
   font-weight: 500;
-  letter-spacing: 0.15em; /* Slightly adjusted to fit perfectly */
+  letter-spacing: 0.15em; 
   text-transform: uppercase;
   margin-top: 1rem;
   text-shadow: 0 0 8px rgba(8, 68, 197, 0.5);
   display: flex;
-  justify-content: center; /* Ensures the typing animation stays perfectly centered */
+  justify-content: center; 
 }
 
 /* The Typing Element */
 .typewriter {
-  overflow: hidden; /* Hides the text until the width expands */
-  white-space: nowrap; /* Prevents text from wrapping to a second line */
-  border-right: 2px solid var(--cyan); /* The blinking cursor */
-  width: 0; /* Starts at 0 width */
-  
-  /* 
-    'steps(54)' roughly matches the number of characters in your string.
-    The '1s' delay waits a moment after page load before typing begins. 
-  */
-  animation: 
-    typing 2.5s steps(54, end) 1s forwards, 
-    blink-cursor 0.8s step-end infinite;
+  overflow: hidden; 
+  white-space: nowrap; 
+  border-right: 2px solid var(--cyan); 
+  width: 0; 
+  animation: typing 2.5s steps(54, end) 1s forwards, blink-cursor 0.8s step-end infinite;
 }
 
 .hero-sub-title .separator {
@@ -297,6 +234,27 @@ a { color: inherit; }
   margin: 0 0.5rem;
 }
 
+/* ---------------------------------------------------------
+   HERO MOBILE ADJUSTMENTS
+   --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .hero-center-wrapper {
+    margin-top: 4rem; /* Safely pushes text below the mobile hamburger menu */
+  }
+  
+  .hero-sub-title {
+    font-size: 0.55rem; /* Shrinks the text perfectly to fit mobile viewports */
+    letter-spacing: 0.05em; /* Tightens the letters so it doesn't overflow horizontally */
+  }
+  
+  .cursive-name {
+    font-size: 3rem; /* Prevents the name from becoming too massive and wrapping poorly */
+  }
+  
+  .small-caps {
+    font-size: 0.6rem;
+  }
+}
 /* =========================================================
    TYPEWRITER KEYFRAMES
    ========================================================= */
