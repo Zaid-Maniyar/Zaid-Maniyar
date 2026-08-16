@@ -2523,3 +2523,93 @@ a { color: inherit; }
     height: 18px;
   }
 }
+
+/* =========================================================
+   MOBILE SOCIAL ICONS IN HEADER (HORIZONTAL)
+   ========================================================= */
+.nav-mobile-socials {
+  display: none; /* Hidden completely on Desktop */
+}
+
+/* Restores styling for the original Desktop vertical sidebar */
+.vertical-socials {
+  position: absolute;
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 100;
+}
+
+.vertical-socials a {
+  color: var(--text);
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.vertical-socials a:hover {
+  color: var(--cyan);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px var(--cyan));
+}
+
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 1000px) {
+  
+  /* Hides the Desktop vertical sidebar on small screens */
+  .vertical-socials {
+    display: none !important; 
+  }
+
+  /* Shows and styles the Mobile header icons horizontally */
+  .nav-mobile-socials {
+    display: flex;
+    flex-direction: row; /* Forces horizontal alignment */
+    align-items: center;
+    gap: 15px; /* Space between icons */
+    
+    /* Places them dead center in the header */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .nav-mobile-socials a {
+    color: var(--text);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .nav-mobile-socials a svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Bouncy Hover/Tap animation */
+  .nav-mobile-socials a:hover,
+  .nav-mobile-socials a:active {
+    color: var(--cyan);
+    filter: drop-shadow(0 0 10px var(--cyan));
+    transform: scale(1.25) translateY(-3px); 
+  }
+}
+
+/* Fix for extremely small phones (e.g., older iPhones) to prevent overlapping */
+@media (max-width: 380px) {
+  .nav-mobile-socials {
+    gap: 10px;
+  }
+  .nav-mobile-socials a {
+    width: 18px;
+    height: 18px;
+  }
+}
