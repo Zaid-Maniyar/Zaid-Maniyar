@@ -1275,7 +1275,11 @@ a { color: inherit; }
 }
 .achievement-card .card-scanline { background: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
 .achievement-card:hover .tech-nodes span { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
-.achievement-card .github-btn:hover { background: var(--cyan); box-shadow: 0 0 15px rgba(94, 231, 255, 0.4); }
+.achievement-card .github-btn:hover { 
+  background: var(--cyan); 
+  color: #000 !important; /* Forces the text to black on hover */
+  box-shadow: 0 0 15px rgba(94, 231, 255, 0.4); 
+}
 
 /* --- Responsive Grid Adjustments --- */
 @media (max-width: 1100px) {
